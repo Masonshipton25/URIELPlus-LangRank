@@ -1,22 +1,20 @@
 import pandas as pd
 import numpy as np
-import lightgbm as lgb
 from lightgbm import LGBMRanker
-from matplotlib import pyplot as plt
 from sklearn.model_selection import LeaveOneGroupOut
-import letor_metrics
 from sklearn.metrics import ndcg_score
 
 # Load the data
-data = pd.read_csv('dep.csv')
+data = pd.read_csv('dep\\dep_updated.csv') #Change to dep_updated.csv for URIEL+, dep.csv for URIEL
 logo = LeaveOneGroupOut()
+
 # Define feature columns and target column
+# LANGRANK with language vectors and additional dataset-dependent features such as size and type-token ratio
 features = ['Word overlap','Transfer lang dataset size',
             'Target lang dataset size', 'Transfer over target size ratio', 'Transfer lang TTR',
             'Target lang TTR', 'Transfer target TTR distance','GENETIC','SYNTACTIC','FEATURAL','PHONOLOGICAL','INVENTORY','GEOGRAPHIC']
-# features = ['Word overlap','Transfer lang dataset size',
-#             'Target lang dataset size', 'Transfer over target size ratio', 'Transfer lang TTR',
-#             'Target lang TTR', 'Transfer target TTR distance']
+
+# LANGRANK with only language vectors
 features = [ 'GENETIC','SYNTACTIC','FEATURAL','PHONOLOGICAL','INVENTORY','GEOGRAPHIC']
 
 data['relevance'] = 0
@@ -64,30 +62,14 @@ for train_idx, test_idx in logo.split(data, groups=groups):
     test_X = test_data[features]
     test_y = test_data['relevance']
 
-
-    # Prepare LightGBM dataset
-    train_dataset = lgb.Dataset(train_X, label=train_y,group=query)
-    test_dataset = lgb.Dataset(test_X, label=test_y, group=[29], reference=train_dataset)
-
-
     # Train the model
-    ranker.fit(train_X, train_y, group=query, eval_set=[(test_X, test_y)], eval_group=[[29]], eval_at=[3],verbose=-1)
+    ranker.fit(train_X, train_y, group=query, eval_set=[(test_X, test_y)], eval_group=[[29]], eval_at=[3])
 
     # Predict and evaluate NDCG@3
     y_pred = ranker.predict(test_X)
     score = ndcg_score([test_y],[y_pred],k=3)
-    # score = letor_metrics.ndcg_score(test_y.values, y_pred, k=3)
     ndcg_scores.append(score)
 
-
-#final model
-ranker.fit(data[features], data['relevance'], group=[29] * 30)
-print(ranker.feature_importances_)
-lgb.plot_importance(ranker, importance_type='split')
-# plt.show()
 # Calculate the average NDCG@3 score
 average_ndcg = np.mean(ndcg_scores)
 print(f'Average NDCG@3: {round(average_ndcg*100,1)}')
-print([round(float(x), 3) for x in ndcg_scores])
-
-
