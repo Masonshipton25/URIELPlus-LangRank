@@ -5,7 +5,7 @@ from sklearn.model_selection import LeaveOneGroupOut
 from sklearn.metrics import ndcg_score
 
 # Load the data
-data = pd.read_csv('dep\\dep_updated.csv') #Change to dep_updated.csv for URIEL+, dep.csv for URIEL
+data = pd.read_csv('csv_datasets\\dep.csv')
 logo = LeaveOneGroupOut()
 
 # Define feature columns and target column
@@ -15,7 +15,7 @@ features = ['Word overlap','Transfer lang dataset size',
             'Target lang TTR', 'Transfer target TTR distance','GENETIC','SYNTACTIC','FEATURAL','PHONOLOGICAL','INVENTORY','GEOGRAPHIC']
 
 # LANGRANK with only language vectors
-features = [ 'GENETIC','SYNTACTIC','FEATURAL','PHONOLOGICAL','INVENTORY','GEOGRAPHIC']
+# features = [ 'GENETIC','SYNTACTIC','FEATURAL','PHONOLOGICAL','INVENTORY','GEOGRAPHIC']
 
 data['relevance'] = 0
 

@@ -5,7 +5,7 @@ from sklearn.model_selection import LeaveOneGroupOut
 from sklearn.metrics import ndcg_score
 
 # Load the data
-data = pd.read_csv('mt\\mt_removed_ambiguous_updated.csv') #Change to mt_updated.csv for URIEL+, mt.csv for URIEL
+data = pd.read_csv('csv_datasets\\mt.csv') 
 groups = data['Source lang']
 logo = LeaveOneGroupOut()
 
