@@ -18,9 +18,9 @@ By [Mason Shipton](https://github.com/Masonshipton25), [David Duan](https://gith
 
 ## About LangRank
 
-### [ProxyLM: Predicting Language Model Performance on Multilingual Tasks via Proxy Models](https://aclanthology.org/P19-1301/)
+### [Choosing Transfer Languages for Cross-Lingual Learning](https://aclanthology.org/P19-1301/)
 
-![framework for LM performance prediction](./logos/langrank_logo.png)
+![Workflow of learning to select the transfer languages for an NLP task](./logos/langrank_logo.png)
 
 #### Abstract
 Cross-lingual transfer, where a high-resource *transfer* language is used to improve the accuracy of a low-resource *task* language, is now an invaluable tool for improving performance of natural language processing (NLP) on lowresource languages. However, given a particular task language, it is not clear *which* language to transfer from, and the standard strategy is to select languages based on *ad hoc* criteria, usually the intuition of the experimenter. Since a large number of features contribute to the success of cross-lingual transfer (including phylogenetic similarity, typological properties, lexical overlap, or size of available data), even the most enlightened experimenter rarely considers all these factors for the particular task at hand. In this paper, we consider this task of automatically selecting optimal transfer languages as a ranking problem, and build models that consider the aforementioned features to perform this prediction. In experiments on representative NLP tasks, we demonstrate that our model predicts good transfer languages much better than *ad hoc* baselines considering single features in isolation, and glean insights on what features are most informative for each different NLP tasks, which may inform future *ad hoc* selection even without use of our method.
@@ -38,7 +38,7 @@ If you are interested for more information, check out the [full paper](https://a
 }
 ```
 
-If you have any questions, you can open a [GitHub Issue](https://github.com/davidanugraha/proxylm/issues) or send them an [email](mailto:david.anugraha@gmail.com).
+If you have any questions, you can open a [GitHub Issue](https://github.com/neulab/langrank/issues).
 
 
 ## About URIEL+
