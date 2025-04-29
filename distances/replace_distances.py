@@ -1,6 +1,7 @@
 # Updates dep, el, mt, and pos experiment CSVs with URIEL+ distances
 
 import pandas as pd
+import os
 
 distances = ["GENETIC", "SYNTACTIC", "FEATURAL", "PHONOLOGICAL", "INVENTORY", "GEOGRAPHIC"]
 
@@ -11,7 +12,8 @@ dep_distances_df = pd.read_csv("distances//dep_distances.csv")
 
 # Replace the distances in dep experiment csv with those from dep distances
 dep_df[distances] = dep_distances_df[distances]
-dep_df.to_csv("csv_datasets//dep.csv", index=False)
+os.makedirs('src//csv_datasets', exist_ok=True)
+dep_df.to_csv("src//csv_datasets//dep.csv", index=False)
 
 
 # Update el experiment csv with URIEL+ distances
@@ -21,7 +23,7 @@ el_distances_df = pd.read_csv("distances//el_distances.csv")
 
 # Replace the distances in el experiment csv with those from el distances
 el_df[distances] = el_distances_df[distances]
-el_df.to_csv("csv_datasets//el.csv", index=False)
+el_df.to_csv("src//csv_datasets//el.csv", index=False)
 
 
 # Update mt experiment csv with URIEL+ distances
@@ -31,7 +33,7 @@ mt_distances_df = pd.read_csv("distances//mt_distances.csv")
 
 # Replace the distances in mt experiment csv with those from mt distances
 mt_df[distances] = mt_distances_df[distances]
-mt_df.to_csv("csv_datasets//mt.csv", index=False)
+mt_df.to_csv("src//csv_datasets//mt.csv", index=False)
 
 
 # Update pos experiment csv with URIEL+ distances
@@ -41,4 +43,4 @@ pos_distances_df = pd.read_csv("distances//pos_distances.csv")
 
 # Replace the distances in pos experiment csv with those from pos distances
 pos_df[distances] = mt_distances_df[distances]
-pos_df.to_csv("csv_datasets//pos.csv", index=False)
+pos_df.to_csv("src//csv_datasets//pos.csv", index=False)

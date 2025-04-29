@@ -1,21 +1,36 @@
+import argparse
 import pandas as pd
 import numpy as np
 from lightgbm import LGBMRanker
 from sklearn.model_selection import LeaveOneGroupOut
 from sklearn.metrics import ndcg_score
 
+# Parse command line arguments
+parser = argparse.ArgumentParser(description="Run LANGRANK with different feature sets.")
+parser.add_argument('--mode', choices=['lang', 'all'], default='all',
+                    help="Choose feature set: 'lang' for language vectors only, 'all' for vectors plus dataset features (default: all).")
+args = parser.parse_args()
+
 # Load the data
-data = pd.read_csv('csv_datasets\\el.csv')
+data = pd.read_csv('src\\csv_datasets\\el.csv')
 groups = data['Target lang']
 logo = LeaveOneGroupOut()
 
-# Define feature columns and target column
-# LANGRANK with language vectors and additional dataset-dependent features such as size and type-token ratio
-features = ['Entity overlap','Transfer lang dataset size','Target lang dataset size',
-            'Transfer over target size ratio','GENETIC','SYNTACTIC','FEATURAL','PHONOLOGICAL','INVENTORY','GEOGRAPHIC']
+# Define feature sets
+features_all = [
+    'Entity overlap','Transfer lang dataset size','Target lang dataset size',
+    'Transfer over target size ratio','GENETIC','SYNTACTIC','FEATURAL','PHONOLOGICAL','INVENTORY','GEOGRAPHIC'
+]
 
-# LANGRANK with only language vectors
-# features = ['GENETIC','SYNTACTIC','FEATURAL','PHONOLOGICAL','INVENTORY','GEOGRAPHIC']
+features_lang = [
+    'GENETIC', 'SYNTACTIC', 'FEATURAL', 'PHONOLOGICAL', 'INVENTORY', 'GEOGRAPHIC'
+]
+
+# Choose feature list based on mode
+if args.mode == 'all':
+    features = features_all
+else:
+    features = features_lang
 
 target = 'Accuracy'
 

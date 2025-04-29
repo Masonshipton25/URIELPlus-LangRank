@@ -6,6 +6,11 @@ By [Mason Shipton](https://github.com/Masonshipton25), [York Hay Ng](https://git
 
 - [About LangRank](#about-langrank)
 - [About URIEL+](#about-uriel)
+- [Environment](#environment)
+- [Running LangRank Models](#running-langrank-models)
+  - [1. Distance Calculation](#1-distance-calculation)
+  - [2. Updating Experiment CSVs](#2-updating-experiment-csvs)
+  - [3. Running Experiments](#3-running-experiments)
 
 ## About LangRank
 
@@ -64,3 +69,103 @@ Check out ExploRIEL, the online UI for URIEL+: https://uriel-leelab.streamlit.ap
 Requires **Python 3.10** or later.
 
 All dependencies are listed in the `requirements/` folder.
+
+
+## Running LangRank Models
+
+### 1. Distance Calculation
+
+Run the following script to calculate URIEL+ distances:
+
+```bash
+python distances/calculate_distances.py
+```
+
+This will create four CSV files containing distances for the **DEP**, **EL**, **MT**, and **POS** language datasets.
+
+> Output files will be saved to the `distances/` folder.
+
+---
+
+
+### 2. Updating Experiment CSVs
+
+After calculating distances, run:
+
+```bash
+python distances/replace_distances.py
+```
+
+This updates the experiment CSV files for DEP, EL, MT, and POS with URIEL+ distances.
+
+> Updated experiment CSVs will be saved to `src/csv_datasets/`.
+
+---
+
+### 3. Running Experiments
+
+<details>
+<summary><strong>Dependency Parsing (DEP) Experiments</strong> (click to expand)</summary>
+
+- **LangRank (all)**
+  ```bash
+  python src/langrank_models/dep.py --mode all
+  ```
+
+- **LangRank (lang feats)**
+  ```bash
+  python src/langrank_models/dep.py --mode lang
+  ```
+
+</details>
+
+---
+
+<details>
+<summary><strong>Entity Linking (EL) Experiments</strong> (click to expand)</summary>
+
+- **LangRank (all)**
+  ```bash
+  python src/langrank_models/el.py --mode all
+  ```
+
+- **LangRank (lang feats)**
+  ```bash
+  python src/langrank_models/el.py --mode lang
+  ```
+
+</details>
+
+---
+
+<details>
+<summary><strong>Machine Translation (MT) Experiments</strong> (click to expand)</summary>
+
+- **LangRank (all)**
+  ```bash
+  python src/langrank_models/mt.py --mode all
+  ```
+
+- **LangRank (lang feats)**
+  ```bash
+  python src/langrank_models/mt.py --mode lang
+  ```
+
+</details>
+
+---
+
+<details>
+<summary><strong>Part of Speech (POS) Tagging Experiments</strong> (click to expand)</summary>
+
+- **LangRank (all)**
+  ```bash
+  python src/langrank_models/pos.py --mode all
+  ```
+
+- **LangRank (lang feats)**
+  ```bash
+  python src/langrank_models/pos.py --mode lang
+  ```
+
+</details>

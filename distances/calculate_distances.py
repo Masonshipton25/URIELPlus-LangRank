@@ -7,10 +7,10 @@ import csv
 
 # Initialize the URIEL+ system and enable caching for efficiency
 u = uriel.URIELPlus()
-# u.reset()
-# u.set_cache(True)
-# u.integrate_databases()        # Integrate all linguistic sources
-# u.softimpute_imputation()      # Fill missing values using soft 
+u.reset()
+u.set_cache(True)
+u.integrate_databases()        # Integrate all linguistic sources
+u.softimpute_imputation()      # Fill missing values using soft 
 
 
 # Dictionary mapping the language codes (2-letter) from dep.csv to their corresponding ISO 639-3 (3-digit) codes
