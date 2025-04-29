@@ -11,6 +11,10 @@ By [Mason Shipton](https://github.com/Masonshipton25), [York Hay Ng](https://git
   - [1. Distance Calculation](#1-distance-calculation)
   - [2. Updating Experiment CSVs](#2-updating-experiment-csvs)
   - [3. Running Experiments](#3-running-experiments)
+  
+  Optional
+
+  - [4. Determining Statistical Significance](#4-determining-statistical-significance)
 
 ## About LangRank
 
@@ -169,3 +173,22 @@ This updates the experiment CSV files for DEP, EL, MT, and POS with URIEL+ dista
   ```
 
 </details>
+
+---
+
+### Optional
+
+### 4. Determining Statistical Significance
+
+You can test statistical significance between URIEL, URIEL+, or different URIEL versions.
+
+**Steps:**
+
+1. `NDCG@3 scores` from the experiment are outputted to the terminal.  
+   Copy the scores into `statistical.py` under the correct experiment section.
+
+2. Run:
+   ```bash
+   python statistical.py
+   ```
+   > This will output the **p-value** measuring the statistical significance between the different URIEL results.

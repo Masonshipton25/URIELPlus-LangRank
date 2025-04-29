@@ -79,6 +79,8 @@ for train_idx, test_idx in logo.split(data, groups=groups):
     ndcg = ndcg_score([test_y], [y_pred], k=3)
     ndcg_scores.append(ndcg)
 
+# Output all NDCG@3 score for determining statistical significance
+print([round(float(x), 4) for x in ndcg_scores])
 # Calculate the average NDCG@3 score
 average_ndcg = np.mean(ndcg_scores)
 print(f'Average NDCG@3: {round(average_ndcg*100,1)}')
