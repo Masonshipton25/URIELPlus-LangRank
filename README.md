@@ -1,6 +1,6 @@
 # Using LangRank with URIEL+
 
-By [Mason Shipton](https://github.com/Masonshipton25), [York Hay Ng](https://github.com/Swithord)
+By [Mason Shipton](https://github.com/Masonshipton25), [David Duan](https://github.com/davidduan12), [York Hay Ng](https://github.com/Swithord)
 
 ## Contents
 
